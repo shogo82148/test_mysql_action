@@ -2,11 +2,6 @@ name: Test on MySQL
 
 on: [ push ]
 
-env:
-  DB_DATABASE: test_db
-  DB_USER: root
-  DB_PASSWORD: root
-
 jobs:
   build:
     strategy:
@@ -68,5 +63,4 @@ jobs:
       - uses: shogo82148/actions-setup-mysql@v1
         with:
           mysql-version: ${{ matrix.mysql_versions }}
-          root-password: ${{ env.DB_PASSWORD }}
-      - run: mysql -e 'SELECT version();' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+      - run: mysql -e 'SELECT version();' -uroot
