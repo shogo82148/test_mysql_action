@@ -3,7 +3,7 @@ name: Test on MySQL
 on: [ push ]
 
 env:
-  DB_DATABASE: s2_rose_test
+  DB_DATABASE: test_db
   DB_USER: root
   DB_PASSWORD: root
 
@@ -69,8 +69,4 @@ jobs:
         with:
           mysql-version: ${{ matrix.mysql_versions }}
           root-password: ${{ env.DB_PASSWORD }}
-
-      - name: 'Setup MySQL'
-        run: |
-          mysql -e 'SELECT version();' -u${{ env.DB_USER }} -h127.0.0.1 -p${{ env.DB_PASSWORD }}
-          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -h127.0.0.1 -p${{ env.DB_PASSWORD }}
+      - run: mysql -e 'SELECT version();' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
