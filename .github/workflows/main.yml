@@ -63,4 +63,4 @@ jobs:
       - uses: shogo82148/actions-setup-mysql@v1
         with:
           mysql-version: ${{ matrix.mysql_versions }}
-      - run: mysql -e 'SELECT version();' -uroot
+      - run: mysql -v -e 'SELECT version();' -uroot
